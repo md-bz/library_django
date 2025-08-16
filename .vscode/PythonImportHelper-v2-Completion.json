@@ -1,0 +1,427 @@
+[
+    {
+        "label": "runpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "runpy",
+        "description": "runpy",
+        "detail": "runpy",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"Library\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.13/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "base = bin_dir[: -len(\"bin\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"Library\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.13/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"Library\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.13/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"Library\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.13/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV_PROMPT\"]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV_PROMPT\"] = \"Library\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"../lib/python3.13/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"../lib/python3.13/site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "Library.asgi",
+        "description": "Library.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "Library.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "get_book",
+        "kind": 2,
+        "importPath": "Library.db",
+        "description": "Library.db",
+        "peekOfCode": "def get_book(slug):\n    for book in books:\n        if book[\"slug\"] == slug:\n            return book\n    return None\ndef get_books():   \n    return books\ndef get_book_by_id(id):\n    for book in books:\n        if book[\"id\"] == id:",
+        "detail": "Library.db",
+        "documentation": {}
+    },
+    {
+        "label": "get_books",
+        "kind": 2,
+        "importPath": "Library.db",
+        "description": "Library.db",
+        "peekOfCode": "def get_books():   \n    return books\ndef get_book_by_id(id):\n    for book in books:\n        if book[\"id\"] == id:\n            return book \n    return None",
+        "detail": "Library.db",
+        "documentation": {}
+    },
+    {
+        "label": "get_book_by_id",
+        "kind": 2,
+        "importPath": "Library.db",
+        "description": "Library.db",
+        "peekOfCode": "def get_book_by_id(id):\n    for book in books:\n        if book[\"id\"] == id:\n            return book \n    return None",
+        "detail": "Library.db",
+        "documentation": {}
+    },
+    {
+        "label": "books",
+        "kind": 5,
+        "importPath": "Library.db",
+        "description": "Library.db",
+        "peekOfCode": "books = [\n    {\"id\": 1, \"title\": \"The Whispering Shadows\", \"author\": \"Alice Green\", \"year\": 2021, \"slug\": \"the-whispering-shadows\"},\n    {\"id\": 2, \"title\": \"Journey to the Unknown\", \"author\": \"John Smith\", \"year\": 2020, \"slug\": \"journey-to-the-unknown\"},\n    {\"id\": 3, \"title\": \"The Last Light\", \"author\": \"Emily White\", \"year\": 2019, \"slug\": \"the-last-light\"},\n    {\"id\": 4, \"title\": \"Echoes of the Past\", \"author\": \"Michael Brown\", \"year\": 2022, \"slug\": \"echoes-of-the-past\"},\n    {\"id\": 5, \"title\": \"Beneath the Surface\", \"author\": \"Sarah Johnson\", \"year\": 2023, \"slug\": \"beneath-the-surface\"},\n    {\"id\": 6, \"title\": \"The Forgotten Realm\", \"author\": \"David Lee\", \"year\": 2021, \"slug\": \"the-forgotten-realm\"},\n    {\"id\": 7, \"title\": \"A Dance with Time\", \"author\": \"Laura Wilson\", \"year\": 2020, \"slug\": \"a-dance-with-time\"},\n    {\"id\": 8, \"title\": \"The Secret Garden\", \"author\": \"James Taylor\", \"year\": 2018, \"slug\": \"the-secret-garden\"},\n    {\"id\": 9, \"title\": \"Whispers in the Wind\", \"author\": \"Jessica Martin\", \"year\": 2022, \"slug\": \"whispers-in-the-wind\"},",
+        "detail": "Library.db",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-ugd)0wamvhc=&&t^b8rbe+o_t_aqqt*eje2%tw(+dl-(=fm*67'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-ugd)0wamvhc=&&t^b8rbe+o_t_aqqt*eje2%tw(+dl-(=fm*67'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"Library\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"Library\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"Library\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"Library\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n]\nMIDDLEWARE = [",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]\nROOT_URLCONF = 'Library.urls'",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "ROOT_URLCONF = 'Library.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "WSGI_APPLICATION = 'Library.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.1/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n# Password validation",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}\n# Password validation\n# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\nSTATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "STATIC_URL = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AUTO_FIELD",
+        "kind": 5,
+        "importPath": "Library.settings",
+        "description": "Library.settings",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "Library.settings",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "Library.urls",
+        "description": "Library.urls",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\",views.index,name=\"index\"),\n    path(\"book/<slug:slug>/\",views.book,name=\"book\"),\n    path(\"book/<int:id>/\",views.book_by_id,name=\"book_by_id\"),\n]",
+        "detail": "Library.urls",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "Library.views",
+        "description": "Library.views",
+        "peekOfCode": "def index(request):\n    return render(request, \"Library/index.html\",{\"books\":get_books()})\ndef book(request,slug):\n    book = get_book(slug)\n    if book:\n        return render(request, \"Library/book.html\",{\"book\":book})\n    else:\n        return render(request, \"Library/404.html\")\ndef book_by_id(request,id):\n    book = get_book_by_id(id)",
+        "detail": "Library.views",
+        "documentation": {}
+    },
+    {
+        "label": "book",
+        "kind": 2,
+        "importPath": "Library.views",
+        "description": "Library.views",
+        "peekOfCode": "def book(request,slug):\n    book = get_book(slug)\n    if book:\n        return render(request, \"Library/book.html\",{\"book\":book})\n    else:\n        return render(request, \"Library/404.html\")\ndef book_by_id(request,id):\n    book = get_book_by_id(id)\n    if book:\n        return render(request, \"Library/book.html\",{\"book\":book})",
+        "detail": "Library.views",
+        "documentation": {}
+    },
+    {
+        "label": "book_by_id",
+        "kind": 2,
+        "importPath": "Library.views",
+        "description": "Library.views",
+        "peekOfCode": "def book_by_id(request,id):\n    book = get_book_by_id(id)\n    if book:\n        return render(request, \"Library/book.html\",{\"book\":book})\n    else:\n        return render(request, \"Library/404.html\")",
+        "detail": "Library.views",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "Library.wsgi",
+        "description": "Library.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "Library.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "manage",
+        "description": "manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Library.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
+        "detail": "manage",
+        "documentation": {}
+    }
+]
