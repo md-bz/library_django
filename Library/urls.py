@@ -21,8 +21,9 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",views.index,name="index"),
+    path("api/",include("Api.urls")),
+    path("errors/",include("Errors.urls")),
     path("books/<int:id>/",views.book_by_id,name="book_by_id"),
     path("books/<slug:slug>/",views.book,name="book"),
-    path("errors/",include("Errors.urls")),
     path("<path:path>/",views.not_found),
 ]

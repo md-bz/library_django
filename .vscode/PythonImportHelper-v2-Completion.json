@@ -116,35 +116,11 @@
         "documentation": {}
     },
     {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "redirect",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
+        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -169,6 +145,86 @@
         "description": "django.urls",
         "isExtraImport": true,
         "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "get_books",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "get_book",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "get_book_by_id",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "get_books",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "get_book",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "get_book_by_id",
+        "importPath": "db",
+        "description": "db",
+        "isExtraImport": true,
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
         "documentation": {}
     },
     {
@@ -286,6 +342,51 @@
         "documentation": {}
     },
     {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "Api.urls",
+        "description": "Api.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"books/\",views.index,name=\"index\"),\n    path(\"books/<int:id>/\",views.book_by_id,name=\"book_by_id\"),    \n    path(\"books/<slug:slug>/\",views.book,name=\"book\"),\n    path(\"<path:path>/\",views.not_found),\n]",
+        "detail": "Api.urls",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "Api.views",
+        "description": "Api.views",
+        "peekOfCode": "def index(request):\n    return JsonResponse({\"books\":get_books()})\ndef book(request,slug):\n    book = get_book(slug)\n    if book:\n        return JsonResponse(book)\n    else:\n        return JsonResponse({\"error\":\"Book not found\"},status=404)\ndef book_by_id(request,id):\n    book = get_book_by_id(id)",
+        "detail": "Api.views",
+        "documentation": {}
+    },
+    {
+        "label": "book",
+        "kind": 2,
+        "importPath": "Api.views",
+        "description": "Api.views",
+        "peekOfCode": "def book(request,slug):\n    book = get_book(slug)\n    if book:\n        return JsonResponse(book)\n    else:\n        return JsonResponse({\"error\":\"Book not found\"},status=404)\ndef book_by_id(request,id):\n    book = get_book_by_id(id)\n    if book:\n        return JsonResponse(book)",
+        "detail": "Api.views",
+        "documentation": {}
+    },
+    {
+        "label": "book_by_id",
+        "kind": 2,
+        "importPath": "Api.views",
+        "description": "Api.views",
+        "peekOfCode": "def book_by_id(request,id):\n    book = get_book_by_id(id)\n    if book:\n        return JsonResponse(book)\n    else:\n        return JsonResponse({\"error\":\"Book not found\"},status=404)  \ndef not_found(request,path):\n    return JsonResponse({\"error\":\"Not found\"},status=404)",
+        "detail": "Api.views",
+        "documentation": {}
+    },
+    {
+        "label": "not_found",
+        "kind": 2,
+        "importPath": "Api.views",
+        "description": "Api.views",
+        "peekOfCode": "def not_found(request,path):\n    return JsonResponse({\"error\":\"Not found\"},status=404)",
+        "detail": "Api.views",
+        "documentation": {}
+    },
+    {
         "label": "ErrorsConfig",
         "kind": 6,
         "importPath": "Errors.apps",
@@ -319,42 +420,6 @@
         "description": "Library.asgi",
         "peekOfCode": "application = get_asgi_application()",
         "detail": "Library.asgi",
-        "documentation": {}
-    },
-    {
-        "label": "get_book",
-        "kind": 2,
-        "importPath": "Library.db",
-        "description": "Library.db",
-        "peekOfCode": "def get_book(slug: str):\n    for book in books:\n        if book[\"slug\"] == slug:\n            return book\n    return None\ndef get_books():   \n    return books\ndef get_book_by_id(id: int):\n    return books[id-1]",
-        "detail": "Library.db",
-        "documentation": {}
-    },
-    {
-        "label": "get_books",
-        "kind": 2,
-        "importPath": "Library.db",
-        "description": "Library.db",
-        "peekOfCode": "def get_books():   \n    return books\ndef get_book_by_id(id: int):\n    return books[id-1]",
-        "detail": "Library.db",
-        "documentation": {}
-    },
-    {
-        "label": "get_book_by_id",
-        "kind": 2,
-        "importPath": "Library.db",
-        "description": "Library.db",
-        "peekOfCode": "def get_book_by_id(id: int):\n    return books[id-1]",
-        "detail": "Library.db",
-        "documentation": {}
-    },
-    {
-        "label": "books",
-        "kind": 5,
-        "importPath": "Library.db",
-        "description": "Library.db",
-        "peekOfCode": "books = [\n    {\"id\": 1, \"title\": \"The Whispering Shadows\", \"author\": \"Alice Green\", \"year\": 2021, \"slug\": \"the-whispering-shadows\"},\n    {\"id\": 2, \"title\": \"Journey to the Unknown\", \"author\": \"John Smith\", \"year\": 2020, \"slug\": \"journey-to-the-unknown\"},\n    {\"id\": 3, \"title\": \"The Last Light\", \"author\": \"Emily White\", \"year\": 2019, \"slug\": \"the-last-light\"},\n    {\"id\": 4, \"title\": \"Echoes of the Past\", \"author\": \"Michael Brown\", \"year\": 2022, \"slug\": \"echoes-of-the-past\"},\n    {\"id\": 5, \"title\": \"Beneath the Surface\", \"author\": \"Sarah Johnson\", \"year\": 2023, \"slug\": \"beneath-the-surface\"},\n    {\"id\": 6, \"title\": \"The Forgotten Realm\", \"author\": \"David Lee\", \"year\": 2021, \"slug\": \"the-forgotten-realm\"},\n    {\"id\": 7, \"title\": \"A Dance with Time\", \"author\": \"Laura Wilson\", \"year\": 2020, \"slug\": \"a-dance-with-time\"},\n    {\"id\": 8, \"title\": \"The Secret Garden\", \"author\": \"James Taylor\", \"year\": 2018, \"slug\": \"the-secret-garden\"},\n    {\"id\": 9, \"title\": \"Whispers in the Wind\", \"author\": \"Jessica Martin\", \"year\": 2022, \"slug\": \"whispers-in-the-wind\"},",
-        "detail": "Library.db",
         "documentation": {}
     },
     {
@@ -515,7 +580,7 @@
         "kind": 5,
         "importPath": "Library.urls",
         "description": "Library.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\",views.index,name=\"index\"),\n    path(\"books/<int:id>/\",views.book_by_id,name=\"book_by_id\"),\n    path(\"books/<slug:slug>/\",views.book,name=\"book\"),\n    path(\"errors/\",include(\"Errors.urls\")),\n    path(\"<path:path>/\",views.not_found),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\",views.index,name=\"index\"),\n    path(\"api/\",include(\"Api.urls\")),\n    path(\"errors/\",include(\"Errors.urls\")),\n    path(\"books/<int:id>/\",views.book_by_id,name=\"book_by_id\"),\n    path(\"books/<slug:slug>/\",views.book,name=\"book\"),\n    path(\"<path:path>/\",views.not_found),\n]",
         "detail": "Library.urls",
         "documentation": {}
     },
@@ -562,6 +627,42 @@
         "description": "Library.wsgi",
         "peekOfCode": "application = get_wsgi_application()",
         "detail": "Library.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "get_book",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def get_book(slug: str):\n    for book in books:\n        if book[\"slug\"] == slug:\n            return book\n    return None\ndef get_books():   \n    return books\ndef get_book_by_id(id: int):\n    return books[id-1]",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "get_books",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def get_books():   \n    return books\ndef get_book_by_id(id: int):\n    return books[id-1]",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "get_book_by_id",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def get_book_by_id(id: int):\n    return books[id-1]",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "books",
+        "kind": 5,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "books = [\n    {\"id\": 1, \"title\": \"The Whispering Shadows\", \"author\": \"Alice Green\", \"year\": 2021, \"slug\": \"the-whispering-shadows\"},\n    {\"id\": 2, \"title\": \"Journey to the Unknown\", \"author\": \"John Smith\", \"year\": 2020, \"slug\": \"journey-to-the-unknown\"},\n    {\"id\": 3, \"title\": \"The Last Light\", \"author\": \"Emily White\", \"year\": 2019, \"slug\": \"the-last-light\"},\n    {\"id\": 4, \"title\": \"Echoes of the Past\", \"author\": \"Michael Brown\", \"year\": 2022, \"slug\": \"echoes-of-the-past\"},\n    {\"id\": 5, \"title\": \"Beneath the Surface\", \"author\": \"Sarah Johnson\", \"year\": 2023, \"slug\": \"beneath-the-surface\"},\n    {\"id\": 6, \"title\": \"The Forgotten Realm\", \"author\": \"David Lee\", \"year\": 2021, \"slug\": \"the-forgotten-realm\"},\n    {\"id\": 7, \"title\": \"A Dance with Time\", \"author\": \"Laura Wilson\", \"year\": 2020, \"slug\": \"a-dance-with-time\"},\n    {\"id\": 8, \"title\": \"The Secret Garden\", \"author\": \"James Taylor\", \"year\": 2018, \"slug\": \"the-secret-garden\"},\n    {\"id\": 9, \"title\": \"Whispers in the Wind\", \"author\": \"Jessica Martin\", \"year\": 2022, \"slug\": \"whispers-in-the-wind\"},",
+        "detail": "db",
         "documentation": {}
     },
     {

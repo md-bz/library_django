@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .db import get_books,get_book,get_book_by_id
+from db import get_books,get_book,get_book_by_id
 
 def index(request):
     return render(request, "Library/index.html",{"books":get_books()})
