@@ -30,7 +30,8 @@ def remove_book(book_id: int) -> None:
 
 def add_book(book: Dict[str, Any]) -> None:
     books = read_books_from_file()
-    books[str(book["id"])] = book
+    id =len(books) + 1
+    books[id] = book
     write_books_to_file(books)
 
 def update_book(book: Dict[str, Any]) -> None:

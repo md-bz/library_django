@@ -1,0 +1,1 @@
+slugify = lambda text: text.lower().replace(" ", "-")
