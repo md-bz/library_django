@@ -21,6 +21,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",views.index,name="index"),
-    path("book/<slug:slug>/",views.book,name="book"),
-    path("book/<int:id>/",views.book_by_id,name="book_by_id"),
+    path("books/<int:id>/",views.book_by_id,name="book_by_id"),
+    path("books/<slug:slug>/",views.book,name="book"),
 ]

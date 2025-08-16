@@ -186,7 +186,7 @@
         "kind": 2,
         "importPath": "Library.db",
         "description": "Library.db",
-        "peekOfCode": "def get_book(slug):\n    for book in books:\n        if book[\"slug\"] == slug:\n            return book\n    return None\ndef get_books():   \n    return books\ndef get_book_by_id(id):\n    for book in books:\n        if book[\"id\"] == id:",
+        "peekOfCode": "def get_book(slug: str):\n    for book in books:\n        if book[\"slug\"] == slug:\n            return book\n    return None\ndef get_books():   \n    return books\ndef get_book_by_id(id: int):\n    return books[id-1]",
         "detail": "Library.db",
         "documentation": {}
     },
@@ -195,7 +195,7 @@
         "kind": 2,
         "importPath": "Library.db",
         "description": "Library.db",
-        "peekOfCode": "def get_books():   \n    return books\ndef get_book_by_id(id):\n    for book in books:\n        if book[\"id\"] == id:\n            return book \n    return None",
+        "peekOfCode": "def get_books():   \n    return books\ndef get_book_by_id(id: int):\n    return books[id-1]",
         "detail": "Library.db",
         "documentation": {}
     },
@@ -204,7 +204,7 @@
         "kind": 2,
         "importPath": "Library.db",
         "description": "Library.db",
-        "peekOfCode": "def get_book_by_id(id):\n    for book in books:\n        if book[\"id\"] == id:\n            return book \n    return None",
+        "peekOfCode": "def get_book_by_id(id: int):\n    return books[id-1]",
         "detail": "Library.db",
         "documentation": {}
     },
@@ -375,7 +375,7 @@
         "kind": 5,
         "importPath": "Library.urls",
         "description": "Library.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\",views.index,name=\"index\"),\n    path(\"book/<slug:slug>/\",views.book,name=\"book\"),\n    path(\"book/<int:id>/\",views.book_by_id,name=\"book_by_id\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\",views.index,name=\"index\"),\n    path(\"books/<int:id>/\",views.book_by_id,name=\"book_by_id\"),\n    path(\"books/<slug:slug>/\",views.book,name=\"book\"),\n]",
         "detail": "Library.urls",
         "documentation": {}
     },

@@ -22,7 +22,7 @@ books = [
     {"id": 21, "title": "The Art of Letting Go", "author": "Grace Nelson", "year": 2021, "slug": "the-art-of-letting-go"},
 ]
 
-def get_book(slug):
+def get_book(slug: str):
     for book in books:
         if book["slug"] == slug:
             return book
@@ -31,8 +31,5 @@ def get_book(slug):
 def get_books():   
     return books
 
-def get_book_by_id(id):
-    for book in books:
-        if book["id"] == id:
-            return book 
-    return None
+def get_book_by_id(id: int):
+    return books[id-1]
