@@ -44,6 +44,134 @@
         "documentation": {}
     },
     {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "get_asgi_application",
         "importPath": "django.core.asgi",
         "description": "django.core.asgi",
@@ -57,30 +185,6 @@
         "description": "pathlib",
         "isExtraImport": true,
         "detail": "pathlib",
-        "documentation": {}
-    },
-    {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
-        "isExtraImport": true,
-        "detail": "django.contrib",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
         "documentation": {}
     },
     {
@@ -173,6 +277,42 @@
         "documentation": {}
     },
     {
+        "label": "ApiConfig",
+        "kind": 6,
+        "importPath": "Api.apps",
+        "description": "Api.apps",
+        "peekOfCode": "class ApiConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'Api'",
+        "detail": "Api.apps",
+        "documentation": {}
+    },
+    {
+        "label": "ErrorsConfig",
+        "kind": 6,
+        "importPath": "Errors.apps",
+        "description": "Errors.apps",
+        "peekOfCode": "class ErrorsConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'Errors'",
+        "detail": "Errors.apps",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "Errors.urls",
+        "description": "Errors.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"not-found/\",views.not_found,name=\"not_found\"),\n]",
+        "detail": "Errors.urls",
+        "documentation": {}
+    },
+    {
+        "label": "not_found",
+        "kind": 2,
+        "importPath": "Errors.views",
+        "description": "Errors.views",
+        "peekOfCode": "def not_found(request):\n    return render(request, \"Errors/404.html\")",
+        "detail": "Errors.views",
+        "documentation": {}
+    },
+    {
         "label": "application",
         "kind": 5,
         "importPath": "Library.asgi",
@@ -231,7 +371,7 @@
         "kind": 5,
         "importPath": "Library.settings",
         "description": "Library.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-ugd)0wamvhc=&&t^b8rbe+o_t_aqqt*eje2%tw(+dl-(=fm*67'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"Library\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-ugd)0wamvhc=&&t^b8rbe+o_t_aqqt*eje2%tw(+dl-(=fm*67'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"Library\",\n    \"Errors\",\n    'django.contrib.admin',\n    'django.contrib.auth',",
         "detail": "Library.settings",
         "documentation": {}
     },
@@ -240,7 +380,7 @@
         "kind": 5,
         "importPath": "Library.settings",
         "description": "Library.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"Library\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"Library\",\n    \"Errors\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
         "detail": "Library.settings",
         "documentation": {}
     },
@@ -249,7 +389,7 @@
         "kind": 5,
         "importPath": "Library.settings",
         "description": "Library.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"Library\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    \"Library\",\n    \"Errors\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',",
         "detail": "Library.settings",
         "documentation": {}
     },
@@ -258,7 +398,7 @@
         "kind": 5,
         "importPath": "Library.settings",
         "description": "Library.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"Library\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n]\nMIDDLEWARE = [",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"Library\",\n    \"Errors\",\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n]",
         "detail": "Library.settings",
         "documentation": {}
     },
@@ -375,7 +515,7 @@
         "kind": 5,
         "importPath": "Library.urls",
         "description": "Library.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\",views.index,name=\"index\"),\n    path(\"books/<int:id>/\",views.book_by_id,name=\"book_by_id\"),\n    path(\"books/<slug:slug>/\",views.book,name=\"book\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\",views.index,name=\"index\"),\n    path(\"books/<int:id>/\",views.book_by_id,name=\"book_by_id\"),\n    path(\"books/<slug:slug>/\",views.book,name=\"book\"),\n    path(\"errors/\",include(\"Errors.urls\")),\n    path(\"<path:path>/\",views.not_found),\n]",
         "detail": "Library.urls",
         "documentation": {}
     },
@@ -402,7 +542,16 @@
         "kind": 2,
         "importPath": "Library.views",
         "description": "Library.views",
-        "peekOfCode": "def book_by_id(request,id):\n    book = get_book_by_id(id)\n    if book:\n        return render(request, \"Library/book.html\",{\"book\":book})\n    else:\n        return render(request, \"Library/404.html\")",
+        "peekOfCode": "def book_by_id(request,id):\n    book = get_book_by_id(id)\n    if book:\n        return render(request, \"Library/book.html\",{\"book\":book})\n    else:\n        return render(request, \"Library/404.html\")  \ndef not_found(request,path):\n    return redirect(\"not_found\")",
+        "detail": "Library.views",
+        "documentation": {}
+    },
+    {
+        "label": "not_found",
+        "kind": 2,
+        "importPath": "Library.views",
+        "description": "Library.views",
+        "peekOfCode": "def not_found(request,path):\n    return redirect(\"not_found\")",
         "detail": "Library.views",
         "documentation": {}
     },

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .db import get_books,get_book,get_book_by_id
 
 def index(request):
@@ -17,3 +17,6 @@ def book_by_id(request,id):
         return render(request, "Library/book.html",{"book":book})
     else:
         return render(request, "Library/404.html")  
+    
+def not_found(request,path):
+    return redirect("not_found")
