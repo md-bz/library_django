@@ -252,6 +252,39 @@
         "documentation": {}
     },
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "bin_dir",
         "kind": 5,
         "importPath": ".venv.bin.activate_this",
@@ -630,11 +663,29 @@
         "documentation": {}
     },
     {
+        "label": "read_books_from_file",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def read_books_from_file() -> Dict[str, Any]:\n    with open(FILENAME, \"r\") as file:\n        return json.load(file)\ndef write_books_to_file(books: Dict[str, Any]) -> None:\n    with open(FILENAME, \"w\") as file:\n        json.dump(books, file, indent=4)\ndef get_book(slug: str) -> Optional[Dict[str, Any]]:\n    books = read_books_from_file()\n    return next((book for book in books.values() if book[\"slug\"] == slug), None)\ndef get_books() -> Dict[str, Any]:",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "write_books_to_file",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def write_books_to_file(books: Dict[str, Any]) -> None:\n    with open(FILENAME, \"w\") as file:\n        json.dump(books, file, indent=4)\ndef get_book(slug: str) -> Optional[Dict[str, Any]]:\n    books = read_books_from_file()\n    return next((book for book in books.values() if book[\"slug\"] == slug), None)\ndef get_books() -> Dict[str, Any]:\n    return read_books_from_file()\ndef get_book_by_id(book_id: int) -> Optional[Dict[str, Any]]:\n    books = read_books_from_file()",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
         "label": "get_book",
         "kind": 2,
         "importPath": "db",
         "description": "db",
-        "peekOfCode": "def get_book(slug: str):\n    for book in books:\n        if book[\"slug\"] == slug:\n            return book\n    return None\ndef get_books():   \n    return books\ndef get_book_by_id(id: int):\n    return books[id-1]",
+        "peekOfCode": "def get_book(slug: str) -> Optional[Dict[str, Any]]:\n    books = read_books_from_file()\n    return next((book for book in books.values() if book[\"slug\"] == slug), None)\ndef get_books() -> Dict[str, Any]:\n    return read_books_from_file()\ndef get_book_by_id(book_id: int) -> Optional[Dict[str, Any]]:\n    books = read_books_from_file()\n    return books.get(str(book_id))\ndef remove_book(book_id: int) -> None:\n    books = read_books_from_file()",
         "detail": "db",
         "documentation": {}
     },
@@ -643,7 +694,7 @@
         "kind": 2,
         "importPath": "db",
         "description": "db",
-        "peekOfCode": "def get_books():   \n    return books\ndef get_book_by_id(id: int):\n    return books[id-1]",
+        "peekOfCode": "def get_books() -> Dict[str, Any]:\n    return read_books_from_file()\ndef get_book_by_id(book_id: int) -> Optional[Dict[str, Any]]:\n    books = read_books_from_file()\n    return books.get(str(book_id))\ndef remove_book(book_id: int) -> None:\n    books = read_books_from_file()\n    if str(book_id) in books:\n        del books[str(book_id)]\n        write_books_to_file(books)",
         "detail": "db",
         "documentation": {}
     },
@@ -652,16 +703,43 @@
         "kind": 2,
         "importPath": "db",
         "description": "db",
-        "peekOfCode": "def get_book_by_id(id: int):\n    return books[id-1]",
+        "peekOfCode": "def get_book_by_id(book_id: int) -> Optional[Dict[str, Any]]:\n    books = read_books_from_file()\n    return books.get(str(book_id))\ndef remove_book(book_id: int) -> None:\n    books = read_books_from_file()\n    if str(book_id) in books:\n        del books[str(book_id)]\n        write_books_to_file(books)\ndef add_book(book: Dict[str, Any]) -> None:\n    books = read_books_from_file()",
         "detail": "db",
         "documentation": {}
     },
     {
-        "label": "books",
+        "label": "remove_book",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def remove_book(book_id: int) -> None:\n    books = read_books_from_file()\n    if str(book_id) in books:\n        del books[str(book_id)]\n        write_books_to_file(books)\ndef add_book(book: Dict[str, Any]) -> None:\n    books = read_books_from_file()\n    books[str(book[\"id\"])] = book\n    write_books_to_file(books)\ndef update_book(book: Dict[str, Any]) -> None:",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "add_book",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def add_book(book: Dict[str, Any]) -> None:\n    books = read_books_from_file()\n    books[str(book[\"id\"])] = book\n    write_books_to_file(books)\ndef update_book(book: Dict[str, Any]) -> None:\n    books = read_books_from_file()\n    if str(book[\"id\"]) in books:\n        books[str(book[\"id\"])] = book\n        write_books_to_file(books)",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "update_book",
+        "kind": 2,
+        "importPath": "db",
+        "description": "db",
+        "peekOfCode": "def update_book(book: Dict[str, Any]) -> None:\n    books = read_books_from_file()\n    if str(book[\"id\"]) in books:\n        books[str(book[\"id\"])] = book\n        write_books_to_file(books)",
+        "detail": "db",
+        "documentation": {}
+    },
+    {
+        "label": "FILENAME",
         "kind": 5,
         "importPath": "db",
         "description": "db",
-        "peekOfCode": "books = [\n    {\"id\": 1, \"title\": \"The Whispering Shadows\", \"author\": \"Alice Green\", \"year\": 2021, \"slug\": \"the-whispering-shadows\"},\n    {\"id\": 2, \"title\": \"Journey to the Unknown\", \"author\": \"John Smith\", \"year\": 2020, \"slug\": \"journey-to-the-unknown\"},\n    {\"id\": 3, \"title\": \"The Last Light\", \"author\": \"Emily White\", \"year\": 2019, \"slug\": \"the-last-light\"},\n    {\"id\": 4, \"title\": \"Echoes of the Past\", \"author\": \"Michael Brown\", \"year\": 2022, \"slug\": \"echoes-of-the-past\"},\n    {\"id\": 5, \"title\": \"Beneath the Surface\", \"author\": \"Sarah Johnson\", \"year\": 2023, \"slug\": \"beneath-the-surface\"},\n    {\"id\": 6, \"title\": \"The Forgotten Realm\", \"author\": \"David Lee\", \"year\": 2021, \"slug\": \"the-forgotten-realm\"},\n    {\"id\": 7, \"title\": \"A Dance with Time\", \"author\": \"Laura Wilson\", \"year\": 2020, \"slug\": \"a-dance-with-time\"},\n    {\"id\": 8, \"title\": \"The Secret Garden\", \"author\": \"James Taylor\", \"year\": 2018, \"slug\": \"the-secret-garden\"},\n    {\"id\": 9, \"title\": \"Whispers in the Wind\", \"author\": \"Jessica Martin\", \"year\": 2022, \"slug\": \"whispers-in-the-wind\"},",
+        "peekOfCode": "FILENAME = \"db.json\"\ndef read_books_from_file() -> Dict[str, Any]:\n    with open(FILENAME, \"r\") as file:\n        return json.load(file)\ndef write_books_to_file(books: Dict[str, Any]) -> None:\n    with open(FILENAME, \"w\") as file:\n        json.dump(books, file, indent=4)\ndef get_book(slug: str) -> Optional[Dict[str, Any]]:\n    books = read_books_from_file()\n    return next((book for book in books.values() if book[\"slug\"] == slug), None)",
         "detail": "db",
         "documentation": {}
     },

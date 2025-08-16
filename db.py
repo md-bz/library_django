@@ -1,35 +1,40 @@
-books = [
-    {"id": 1, "title": "The Whispering Shadows", "author": "Alice Green", "year": 2021, "slug": "the-whispering-shadows"},
-    {"id": 2, "title": "Journey to the Unknown", "author": "John Smith", "year": 2020, "slug": "journey-to-the-unknown"},
-    {"id": 3, "title": "The Last Light", "author": "Emily White", "year": 2019, "slug": "the-last-light"},
-    {"id": 4, "title": "Echoes of the Past", "author": "Michael Brown", "year": 2022, "slug": "echoes-of-the-past"},
-    {"id": 5, "title": "Beneath the Surface", "author": "Sarah Johnson", "year": 2023, "slug": "beneath-the-surface"},
-    {"id": 6, "title": "The Forgotten Realm", "author": "David Lee", "year": 2021, "slug": "the-forgotten-realm"},
-    {"id": 7, "title": "A Dance with Time", "author": "Laura Wilson", "year": 2020, "slug": "a-dance-with-time"},
-    {"id": 8, "title": "The Secret Garden", "author": "James Taylor", "year": 2018, "slug": "the-secret-garden"},
-    {"id": 9, "title": "Whispers in the Wind", "author": "Jessica Martin", "year": 2022, "slug": "whispers-in-the-wind"},
-    {"id": 10, "title": "The Edge of Tomorrow", "author": "Daniel Harris", "year": 2023, "slug": "the-edge-of-tomorrow"},
-    {"id": 11, "title": "Fragments of Reality", "author": "Sophia Clark", "year": 2021, "slug": "fragments-of-reality"},
-    {"id": 12, "title": "The Hidden Path", "author": "Matthew Lewis", "year": 2020, "slug": "the-hidden-path"},
-    {"id": 13, "title": "Chasing Dreams", "author": "Olivia Hall", "year": 2019, "slug": "chasing-dreams"},
-    {"id": 14, "title": "The Silent Echo", "author": "William Young", "year": 2022, "slug": "the-silent-echo"},
-    {"id": 15, "title": "A World Apart", "author": "Isabella King", "year": 2023, "slug": "a-world-apart"},
-    {"id": 16, "title": "The Color of Hope", "author": "Ethan Wright", "year": 2021, "slug": "the-color-of-hope"},
-    {"id": 17, "title": "Beyond the Horizon", "author": "Mia Scott", "year": 2020, "slug": "beyond-the-horizon"},
-    {"id": 18, "title": "The Timekeeper's Daughter", "author": "Alexander Green", "year": 2019, "slug": "the-timekeepers-daughter"},
-    {"id": 19, "title": "The Last Voyage", "author": "Charlotte Adams", "year": 2022, "slug": "the-last-voyage"},
-    {"id": 20, "title": "The Dreamer's Journey", "author": "Henry Baker", "year": 2023, "slug": "the-dreamers-journey"},
-    {"id": 21, "title": "The Art of Letting Go", "author": "Grace Nelson", "year": 2021, "slug": "the-art-of-letting-go"},
-]
+import json
+from typing import Optional, Dict, Any
 
-def get_book(slug: str):
-    for book in books:
-        if book["slug"] == slug:
-            return book
-    return None
+FILENAME = "db.json"
 
-def get_books():   
-    return books
+def read_books_from_file() -> Dict[str, Any]:
+    with open(FILENAME, "r") as file:
+        return json.load(file)
 
-def get_book_by_id(id: int):
-    return books[id-1]
+def write_books_to_file(books: Dict[str, Any]) -> None:
+    with open(FILENAME, "w") as file:
+        json.dump(books, file, indent=4)
+
+def get_book(slug: str) -> Optional[Dict[str, Any]]:
+    books = read_books_from_file()
+    return next((book for book in books.values() if book["slug"] == slug), None)
+
+def get_books() -> Dict[str, Any]:
+    return read_books_from_file()
+
+def get_book_by_id(book_id: int) -> Optional[Dict[str, Any]]:
+    books = read_books_from_file()
+    return books.get(str(book_id))
+
+def remove_book(book_id: int) -> None:
+    books = read_books_from_file()
+    if str(book_id) in books:
+        del books[str(book_id)]
+        write_books_to_file(books)
+
+def add_book(book: Dict[str, Any]) -> None:
+    books = read_books_from_file()
+    books[str(book["id"])] = book
+    write_books_to_file(books)
+
+def update_book(book: Dict[str, Any]) -> None:
+    books = read_books_from_file()
+    if str(book["id"]) in books:
+        books[str(book["id"])] = book
+        write_books_to_file(books)
