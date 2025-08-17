@@ -23,6 +23,7 @@ urlpatterns = [
     path("",views.index,name="index"),
     path("api/",include("Api.urls")),
     path("errors/",include("Errors.urls")),
+    path("books/",views.index,name="books"),
     path("books/add/",views.add_book,name="add_book"),
     path("books/<int:id>/update",views.update_book,name="update_book"),
     path("books/<int:id>/remove",views.remove_book,name="remove_book"),
