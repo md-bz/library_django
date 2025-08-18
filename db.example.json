@@ -1,128 +1,142 @@
-{
-    "1": {
+[
+    {
+        "id": 1,
         "title": "The Whispering Shadows",
         "author": "Alice Green",
         "year": 2021,
         "slug": "the-whispering-shadows"
     },
-    "2": {
+    {
+        "id": 2,
         "title": "Journey to the Unknown",
         "author": "John Smith",
         "year": 2020,
         "slug": "journey-to-the-unknown"
     },
-    "3": {
+    {
+        "id": 3,
         "title": "The Last Light",
         "author": "Emily White",
         "year": 2019,
         "slug": "the-last-light"
     },
-    "4": {
+    {
+        "id": 4,
         "title": "Echoes of the Past",
         "author": "Michael Brown",
         "year": 2022,
         "slug": "echoes-of-the-past"
     },
-    "5": {
+    {
+        "id": 5,
         "title": "Beneath the Surface",
         "author": "Sarah Johnson",
         "year": 2023,
         "slug": "beneath-the-surface"
     },
-    "6": {
+    {
+        "id": 6,
         "title": "The Forgotten Realm",
         "author": "David Lee",
         "year": 2021,
         "slug": "the-forgotten-realm"
     },
-    "7": {
+    {
+        "id": 7,
         "title": "A Dance with Time",
         "author": "Laura Wilson",
         "year": 2020,
         "slug": "a-dance-with-time"
     },
-    "8": {
+    {
+        "id": 8,
         "title": "The Secret Garden",
         "author": "James Taylor",
         "year": 2018,
         "slug": "the-secret-garden"
     },
-    "9": {
+    {
+        "id": 9,
         "title": "Whispers in the Wind",
         "author": "Jessica Martin",
         "year": 2022,
         "slug": "whispers-in-the-wind"
     },
-    "10": {
+    {
+        "id": 10,
         "title": "The Edge of Tomorrow",
         "author": "Daniel Harris",
         "year": 2023,
         "slug": "the-edge-of-tomorrow"
     },
-    "11": {
+    {
+        "id": 11,
         "title": "Fragments of Reality",
         "author": "Sophia Clark",
         "year": 2021,
         "slug": "fragments-of-reality"
     },
-    "12": {
+    {
+        "id": 12,
         "title": "The Hidden Path",
         "author": "Matthew Lewis",
         "year": 2020,
         "slug": "the-hidden-path"
     },
-    "13": {
+    {
+        "id": 13,
         "title": "Chasing Dreams",
         "author": "Olivia Hall",
         "year": 2019,
         "slug": "chasing-dreams"
     },
-    "14": {
+    {
+        "id": 14,
         "title": "The Silent Echo",
         "author": "William Young",
         "year": 2022,
         "slug": "the-silent-echo"
     },
-    "15": {
+    {
+        "id": 15,
         "title": "A World Apart",
         "author": "Isabella King",
         "year": 2023,
         "slug": "a-world-apart"
     },
-    "16": {
+    {
+        "id": 16,
         "title": "The Color of Hope",
         "author": "Ethan Wright",
         "year": 2021,
         "slug": "the-color-of-hope"
     },
-    "17": {
+    {
+        "id": 17,
         "title": "Beyond the Horizon",
         "author": "Mia Scott",
         "year": 2020,
         "slug": "beyond-the-horizon"
     },
-    "18": {
+    {
+        "id": 18,
         "title": "The Timekeeper's Daughter",
         "author": "Alexander Green",
         "year": 2019,
         "slug": "the-timekeepers-daughter"
     },
-    "19": {
+    {
+        "id": 19,
         "title": "The Last Voyage",
         "author": "Charlotte Adams",
         "year": 2022,
         "slug": "the-last-voyage"
     },
-    "20": {
+    {
+        "id": 20,
         "title": "The Dreamer's Journey",
         "author": "Henry Baker",
         "year": 2023,
         "slug": "the-dreamers-journey"
-    },
-    "21": {
-        "title": "The Art of Letting Go",
-        "author": "Grace Nelson",
-        "year": 2021,
-        "slug": "the-art-of-letting-go"
     }
-}
+]
