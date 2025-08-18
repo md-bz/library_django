@@ -10,6 +10,9 @@ from helpers import slugify
 @require_http_methods(["GET","POST"])
 def books(request):
     if request.method == "GET":
+        search_query = request.GET.get("search")
+        if search_query:
+            return JsonResponse({"books": db.search_books(search_query)})
         return JsonResponse({"books": db.get_books()})
     try:
         data = json.loads(request.body.decode("utf-8"))

@@ -3,7 +3,12 @@ import db
 from helpers import slugify
 
 def index(request):
-    return render(request, "Library/index.html",{"books":db.get_books()})
+    search_query = request.GET.get("search")
+    if search_query:
+        books = db.search_books(search_query)
+    else:
+        books = db.get_books()
+    return render(request, "Library/index.html",{"books":books})
 
 def book(request,slug):
     book = db.get_book(slug)

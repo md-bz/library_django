@@ -2,7 +2,13 @@
 
 {% block title %}Library - Home{% endblock %}
 
+
 {% block content %}
+<form action="" method="GET">
+    <input type="text" name="search" required placeholder="search books">
+    <button type="submit">search</button>
+</form>
+
 <ul>
     {% for book in books %}
     <li>

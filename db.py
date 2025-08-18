@@ -42,3 +42,7 @@ def update_book(book: Dict[str, Any]) -> None:
             books[idx] = book
             break
     write_books_to_file(books)
+
+def search_books(query: str) -> List[Dict[str, Any]]:
+    books = read_books_from_file()
+    return [book for book in books if query.lower() in book["title"].lower()]
