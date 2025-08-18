@@ -1,9 +1,12 @@
 import json
 from typing import Optional, List, Dict, Any
+import os
 
 FILENAME = "db.json"
 
 def read_books_from_file() -> List[Dict[str, Any]]:
+    if not os.path.exists(FILENAME):
+        return []  
     with open(FILENAME, "r") as file:
         return json.load(file)
 
