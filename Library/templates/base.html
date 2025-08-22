@@ -14,8 +14,20 @@
     <body>
         <header>
             <nav>
-                <a href="{% url 'index' %}">Home</a>
-                <a href="{% url 'add_book' %}">Add Book</a>
+                <ul>
+                    <li>
+                        <a href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="{% url 'add_book' %}">Add Book</a>
+                    </li>
+                </ul>
+
             </nav>
         </header>
         <main>

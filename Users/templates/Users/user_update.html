@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Update User: {{ user.username }}</h2>
+
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="password">New Password (optional)</label>
+        <input id="password" type="password" name="password">
+    </div>
+    <div>
+        <label for="role">Role</label>
+        <select id="role" name="role">
+            <option value="user" {% if user.role == 'user' %}selected{% endif %}>User</option>
+            <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+        </select>
+    </div>
+    <button type="submit">Save</button>
+    <a href="{% url 'dashboard' %}">Cancel</a>
+    </form>
+{% endblock %}
+
+

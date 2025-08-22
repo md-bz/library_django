@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Dashboard</h2>
+
+<p>Welcome, <strong>{{ username }}</strong> (role: {{ role }})</p>
+
+{% if notifications %}
+<ul>
+    {% for note in notifications %}
+    <li>{{ note }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<h3>Books</h3>
+<ul>
+    {% for book in books %}
+    <li>
+        {% if book.title %}{{ book.title }}{% else %}Book #{{ book.id }}{% endif %}
+    </li>
+    {% empty %}
+    <li>No books available.</li>
+    {% endfor %}
+</ul>
+
+{% if role == 'admin' %}
+<hr>
+    <h3>Users</h3>
+<ul>
+    {% for u in users %}
+    <li>
+        {{ u.username }} ({{ u.role }})
+        <a href="{% url 'user_update' u.username %}">Update</a>
+        <form action="{% url 'user_delete' u.username %}" method="post" style="display:inline">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {% empty %}
+    <li>No users yet.</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
