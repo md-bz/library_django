@@ -55,11 +55,12 @@ def dashboard(request: HttpRequest) -> HttpResponse:
     # List of books for everyone
     books = db.get_books()
     users = db.get_users() if role == "admin" else []
+    user = db.get_user(username)
 
     context = {
         "username": username,
         "role": role,
-        "notifications": [],
+        "notifications": user['notifications'],
         "books": books,
         "users": users,
     }
@@ -110,3 +111,51 @@ def user_delete(request: HttpRequest, username: str) -> HttpResponse:
     except ValueError:
         pass
     return redirect("dashboard")
+
+
+@require_http_methods(["GET", "POST"])
+def send_notification(request: HttpRequest,username:str) -> HttpResponse:
+    current_username = request.session.get("username")
+    role = request.session.get("role")
+
+    if not current_username:
+        return redirect("login")
+    if role != "admin":
+        return redirect("dashboard")
+
+    if request.method == "GET":
+        user = db.get_user(username)
+        return render(request, "Users/send_notification.html", {"user": user})
+
+    message = request.POST.get("notification_message", "").strip()
+
+    if not message:
+        user = db.get_user(username);
+        return render(request, "Users/send_notification.html", {
+            "user": user,
+            "error": "Message is required" 
+        })
+
+    try:
+        db.add_notification(username, message)
+        return redirect("dashboard")
+    except ValueError as exc:
+        users = db.get_users()
+        return render(request, "Users/send_notification.html", {
+            "users": users,
+            "error": str(exc)
+        })
+
+@require_http_methods(["POST"])
+def clear_notifications(request: HttpRequest, username: str) -> HttpResponse:
+    current_username = request.session.get("username")
+
+
+    if  not current_username or current_username != username:
+        return redirect("login")
+
+    try:
+        db.clear_user_notifications(username)
+        return redirect("dashboard")
+    except ValueError:
+        return redirect("dashboard")

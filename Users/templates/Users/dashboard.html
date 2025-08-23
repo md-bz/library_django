@@ -10,7 +10,11 @@
     {% for note in notifications %}
     <li>{{ note }}</li>
     {% endfor %}
-    </ul>
+</ul>
+<form action="{% url 'clear_notifications' username %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Clear notifications</button>
+</form>
 {% endif %}
 
 <h3>Books</h3>
@@ -32,6 +36,7 @@
     <li>
         {{ u.username }} ({{ u.role }})
         <a href="{% url 'user_update' u.username %}">Update</a>
+        <a href="{% url 'send_notification' u.username %}">send notifications</a>
         <form action="{% url 'user_delete' u.username %}" method="post" style="display:inline">
             {% csrf_token %}
             <button type="submit">Delete</button>

@@ -126,3 +126,16 @@ def remove_user(username: str) -> None:
         raise ValueError("User not found")
     write_users_to_file(new_users)
 
+def add_notification(username: str, notification: str) -> None:
+    user = get_user(username)
+    if not user:
+        raise ValueError("User not found")
+    user["notifications"].append(notification)
+    update_user(user)
+
+def clear_user_notifications(username: str) -> None:
+    user = get_user(username)
+    if not user:
+        raise ValueError("User not found")
+    user["notifications"] = []
+    update_user(user)
