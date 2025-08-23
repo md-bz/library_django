@@ -8,4 +8,5 @@
 <p>{{ book.year }}</p>
 <a href="{% url 'update_book' book.id %}">Update</a>
 <a href="{% url 'remove_book' book.id %}">Remove</a>
+<a href="{% url 'borrow_book' book.id %}">Burrow</a>
 {% endblock %}

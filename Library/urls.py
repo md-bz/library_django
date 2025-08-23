@@ -27,6 +27,8 @@ urlpatterns = [
     path("books/add/",views.add_book,name="add_book"),
     path("books/<int:id>/update",views.update_book,name="update_book"),
     path("books/<int:id>/remove",views.remove_book,name="remove_book"),
+    path("books/<int:id>/borrow",views.borrow_book,name="borrow_book"),
+    path("books/waiting-approval",views.waiting_approval,name="waiting_approval"),
     path("books/<int:id>/",views.book_by_id,name="book_by_id"),
     path("books/<slug:slug>/",views.book,name="book"),
     path("users/",include("Users.urls")),

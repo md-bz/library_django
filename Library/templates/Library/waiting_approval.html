@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Borrowing Requests Waiting for Approval</h2>
+
+    {% if requests %}
+        <ul>
+            {% for item in requests %}
+            <li>
+                <article>
+                    <header>
+                        <h3>{{ item.book.title }}</h3>
+                        <p><strong>Requested by:</strong> {{ item.user.username }} ({{ item.user.role }})</p>
+                        <p><strong>Author:</strong> {{ item.book.author }} ({{ item.book.year }})</p>
+                        <p><strong>Days requested:</strong> {{ item.request.borrowed_for }} days</p>
+                    </header>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="borrowing_id" value="{{ item.request.id }}">
+                        <label for="action-{{ item.request.id }}">
+                            Action:
+                            <select name="action" id="action-{{ item.request.id }}" required>
+                                <option value="">Choose action...</option>
+                                <option value="approve">Approve</option>
+                                <option value="reject">Reject</option>
+                            </select>
+                        </label>
+                        <button type="submit">Submit</button>
+                    </form>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No borrowing requests waiting for approval.</p>
+    {% endif %}
+
+    <p><a href="{% url 'index' %}">Back to Library</a></p>
+{% endblock %}
