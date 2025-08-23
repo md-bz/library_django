@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from Users.decorators import require_admin
 import db
 from helpers import slugify
 
@@ -28,6 +29,7 @@ def book_by_id(request,id):
 def not_found(request,path):
     return redirect("not_found")
 
+@require_admin
 def add_book(request):
     if request.method == "POST":
         book = request.POST.copy()
@@ -39,6 +41,7 @@ def add_book(request):
     else:
         return render(request, "Library/add_book.html")
 
+@require_admin
 def update_book(request,id):
     if request.method == "POST":
         book = request.POST.copy()
@@ -49,6 +52,7 @@ def update_book(request,id):
     else:
         return render(request, "Library/update_book.html",{"book":db.get_book_by_id(id),"id":id})
 
+@require_admin
 def remove_book(request,id):
     db.remove_book(id)
     return redirect("index")
