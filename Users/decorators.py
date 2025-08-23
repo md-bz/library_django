@@ -25,6 +25,6 @@ def require_admin(view_func: Callable) -> Callable:
         if not username:
             return redirect("login")
         if role != "admin":
-            return redirect("dashboard")
+            return redirect("unauthorized")
         return view_func(request, *args, **kwargs)
     return wrapper
