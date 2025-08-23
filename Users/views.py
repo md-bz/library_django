@@ -4,6 +4,7 @@ from django.views.decorators.http import require_http_methods
 from typing import Dict
 
 import db
+from .decorators import require_auth, require_admin
 
 
 @require_http_methods(["GET", "POST"])
@@ -45,12 +46,11 @@ def signup(request: HttpRequest) -> HttpResponse:
 
 
 
+@require_auth
 @require_http_methods(["GET"])
 def dashboard(request: HttpRequest) -> HttpResponse:
     username = request.session.get("username")
     role = request.session.get("role")
-    if not username:
-        return redirect("login")
 
     # List of books for everyone
     books = db.get_books()
@@ -67,15 +67,9 @@ def dashboard(request: HttpRequest) -> HttpResponse:
     return render(request, "Users/dashboard.html", context)
 
 
+@require_admin
 @require_http_methods(["GET", "POST"])
 def user_update(request: HttpRequest, username: str) -> HttpResponse:
-    current_username = request.session.get("username")
-    role = request.session.get("role")
-    if not current_username:
-        return redirect("login")
-    if role != "admin":
-        return redirect("dashboard")
-
     user = db.get_user(username)
     if not user:
         return redirect("dashboard")
@@ -97,15 +91,9 @@ def user_update(request: HttpRequest, username: str) -> HttpResponse:
         return render(request, "Users/user_update.html", {"user": user, "error": str(exc)})
 
 
+@require_admin
 @require_http_methods(["POST"])
 def user_delete(request: HttpRequest, username: str) -> HttpResponse:
-    current_username = request.session.get("username")
-    role = request.session.get("role")
-    if not current_username:
-        return redirect("login")
-    if role != "admin":
-        return redirect("dashboard")
-
     try:
         db.remove_user(username)
     except ValueError:
@@ -113,16 +101,9 @@ def user_delete(request: HttpRequest, username: str) -> HttpResponse:
     return redirect("dashboard")
 
 
+@require_admin
 @require_http_methods(["GET", "POST"])
-def send_notification(request: HttpRequest,username:str) -> HttpResponse:
-    current_username = request.session.get("username")
-    role = request.session.get("role")
-
-    if not current_username:
-        return redirect("login")
-    if role != "admin":
-        return redirect("dashboard")
-
+def send_notification(request: HttpRequest, username: str) -> HttpResponse:
     if request.method == "GET":
         user = db.get_user(username)
         return render(request, "Users/send_notification.html", {"user": user})
@@ -130,7 +111,7 @@ def send_notification(request: HttpRequest,username:str) -> HttpResponse:
     message = request.POST.get("notification_message", "").strip()
 
     if not message:
-        user = db.get_user(username);
+        user = db.get_user(username)
         return render(request, "Users/send_notification.html", {
             "user": user,
             "error": "Message is required" 
@@ -140,19 +121,19 @@ def send_notification(request: HttpRequest,username:str) -> HttpResponse:
         db.add_notification(username, message)
         return redirect("dashboard")
     except ValueError as exc:
-        users = db.get_users()
+        user = db.get_user(username)
         return render(request, "Users/send_notification.html", {
-            "users": users,
+            "user": user,
             "error": str(exc)
         })
 
+@require_auth
 @require_http_methods(["POST"])
 def clear_notifications(request: HttpRequest, username: str) -> HttpResponse:
     current_username = request.session.get("username")
 
-
-    if  not current_username or current_username != username:
-        return redirect("login")
+    if current_username != username:
+        return redirect("dashboard")
 
     try:
         db.clear_user_notifications(username)
