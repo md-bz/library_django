@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from Users.decorators import require_admin, require_auth
 import db
 from helpers import slugify
+from datetime import datetime
 
 def index(request):
     search_query = request.GET.get("search")
@@ -139,3 +140,33 @@ def waiting_approval(request):
         return redirect("waiting_approval")
     except ValueError as exc:
         return redirect("waiting_approval")
+
+@require_admin
+def active_borrowings(request):
+    borrowings = db.get_active_borrowings()
+    for borrowing in borrowings:
+        book = db.get_book_by_id(borrowing["book_id"])
+        borrowing["book"] = book
+        user = db.get_user_by_id(borrowing["user_id"])
+        borrowing["user"] = user
+
+    return render(request, "Library/active_borrowings.html",{"borrowings":borrowings})  
+
+@require_admin
+def return_book(request,id):
+    borrowing = db.get_borrowing_by_id(id)
+    book  = db.get_book_by_id(borrowing["book_id"])
+    user  = db.get_user_by_id(borrowing["user_id"])
+
+    borrowing["borrowed_till"] = datetime.fromtimestamp(borrowing["borrowed_till"]) if borrowing["borrowed_till"] else None
+    borrowing["returned_at"] = datetime.fromtimestamp(borrowing["returned_at"]) if borrowing["returned_at"] else None
+
+    
+    if request.method == "GET":
+        return render(request, "Library/return_book.html",{"book":book,"borrowing":borrowing,"user":user})
+    try:
+        db.return_book(id)
+        return render(request, "Library/return_book.html",{"book":book,"borrowing":borrowing,"user":user,"success":"Book returned successfully"})
+    except ValueError as exc:    
+        return render(request, "Library/return_book.html",{"book":book,"borrowing":borrowing,"user":user,"error":str(exc)})
+    

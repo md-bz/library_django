@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Return Book</h2>
+
+<p>book: {{ book.title }}</p>
+<p>borrowed for: {{ borrowing.borrowed_for }} days</p>
+<p>borrowed by : {{ user.username }} </p>
+<p> due date: {{ borrowing.borrowed_till|date:"Y-m-d H:i" }}</p>
+{% if borrowing.returned_at %}
+<p>returned at: {{ borrowing.returned_at|date:"Y-m-d H:i" }}</p>
+{% endif %}
+
+{% if success %}
+<p>{{ success }}</p>
+{% endif %}
+{% if error %}
+<p>{{ error }}</p>  
+{% endif %}
+
+<form action="{% url 'return_book' borrowing.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit">return book</button>
+</form>
+{% endblock %}

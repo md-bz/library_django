@@ -29,6 +29,8 @@ urlpatterns = [
     path("books/<int:id>/remove",views.remove_book,name="remove_book"),
     path("books/<int:id>/borrow",views.borrow_book,name="borrow_book"),
     path("books/waiting-approval",views.waiting_approval,name="waiting_approval"),
+    path("books/active-borrowings",views.active_borrowings,name="active_borrowings"),
+    path("books/<int:id>/return-book",views.return_book,name="return_book"),     
     path("books/<int:id>/",views.book_by_id,name="book_by_id"),
     path("books/<slug:slug>/",views.book,name="book"),
     path("users/",include("Users.urls")),
