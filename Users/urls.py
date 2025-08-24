@@ -23,6 +23,7 @@ urlpatterns = [
     path("signup/",views.signup,name="signup"),
     path("user_update/<int:user_id>",views.user_update,name="user_update"),
     path("user_delete/<int:user_id>",views.user_delete,name="user_delete"),
+    path("update_me",views.update_me,name="update_me"),
     path("send_notification/<int:user_id>",views.send_notification,name="send_notification"),
     path("clear_notifications/<int:user_id>",views.clear_notifications,name="clear_notifications"),
 ]

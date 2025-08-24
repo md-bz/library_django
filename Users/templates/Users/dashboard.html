@@ -17,16 +17,43 @@
 </form>
 {% endif %}
 
-<h3>Books</h3>
+<form action="{% url 'update_me' %}" method="post">
+    {% csrf_token %}
+    <label >Username:
+
+        <input type="text" name="username" value="{{ user.username }}">
+    </label>
+
+    <label>Password:
+        <input type="password" name="password">
+    </label> 
+    <button type="submit">Update</button>
+</form>
+
+<hr>
+<h3>My Borrowing History</h3>
+{% if borrowings %}
 <ul>
-    {% for book in books %}
+    {% for item in borrowings %}
     <li>
-        {% if book.title %}{{ book.title }}{% else %}Book #{{ book.id }}{% endif %}
+        <strong>{{ item.book.title }}</strong> by {{ item.book.author }}<br>
+        <small>
+            Status: <span style="color: {% if item.status == 'Approved' %}green{% elif item.status == 'Rejected' %}red{% elif item.status == 'Waiting Approval' %}orange{% else %}blue{% endif %};">{{ item.status }}</span><br>
+            Requested for: {{ item.borrowing.borrowed_for }} days<br>
+            {% if item.borrowing.borrowed_till %}
+            Due date: {{ item.borrowing.borrowed_till|date:"Y-m-d H:i" }}<br>
+            {% endif %}
+            {% if item.borrowing.returned_at %}
+            Returned: {{ item.borrowing.returned_at|date:"Y-m-d H:i" }}
+            {% endif %}
+        </small>
     </li>
-    {% empty %}
-    <li>No books available.</li>
     {% endfor %}
 </ul>
+{% else %}
+<p>No borrowing history yet.</p>
+{% endif %}
+
 
 {% if role == 'admin' %}
 <hr>

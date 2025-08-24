@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views.decorators.http import require_http_methods
@@ -57,6 +58,30 @@ def dashboard(request: HttpRequest) -> HttpResponse:
     users = db.get_users() if role == "admin" else []
     user = db.get_user_by_username(username)
 
+    user_borrowings = db.get_user_borrowings(user["id"]) if user else []
+    
+    borrowings = []
+    for borrowing in user_borrowings:
+        book = db.get_book_by_id(borrowing["book_id"])
+        status = "Waiting Approval"
+        if borrowing.get("approved") is True:
+            status = "Approved"
+        elif borrowing.get("approved") is False:
+            status = "Rejected"
+        elif borrowing.get("returned_at") is not None:
+            status = "Returned"
+            
+        borrowing["borrowed_till"] = datetime.fromtimestamp(borrowing["borrowed_till"]) if borrowing["borrowed_till"] else None
+        borrowing["returned_at"] = datetime.fromtimestamp(borrowing["returned_at"]) if borrowing["returned_at"] else None
+
+            
+        borrowings.append({
+            "borrowing": borrowing,
+            "book": book,
+            "status": status
+        })
+
+
     context = {
         "username": username,
         "role": role,
@@ -64,9 +89,27 @@ def dashboard(request: HttpRequest) -> HttpResponse:
         "notifications": user['notifications'],
         "books": books,
         "users": users,
+        "borrowings":borrowings,
     }
     return render(request, "Users/dashboard.html", context)
 
+
+@require_auth
+@require_http_methods(["POST"])
+def update_me(request: HttpRequest) -> HttpResponse:
+    username = request.session.get("username")
+    user = db.get_user_by_username(username)
+
+    new_username = request.POST.get("username")
+    new_password = request.POST.get("password")
+
+    try:
+        db.update_user({"id": user["id"], "username": new_username, "password": new_password})
+        return redirect("dashboard")
+    except ValueError as exc:
+        print(exc)
+        return redirect("dashboard")
+        
 
 @require_admin
 @require_http_methods(["GET", "POST"])
