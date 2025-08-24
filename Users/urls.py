@@ -21,8 +21,8 @@ urlpatterns = [
     path("dashboard/",views.dashboard,name="dashboard"),
     path("login/",views.login,name="login"),
     path("signup/",views.signup,name="signup"),
-    path("user_update/<username>",views.user_update,name="user_update"),
-    path("user_delete/<username>",views.user_delete,name="user_delete"),
-    path("send_notification/<username>",views.send_notification,name="send_notification"),
-    path("clear_notifications/<username>",views.clear_notifications,name="clear_notifications"),
+    path("user_update/<int:user_id>",views.user_update,name="user_update"),
+    path("user_delete/<int:user_id>",views.user_delete,name="user_delete"),
+    path("send_notification/<int:user_id>",views.send_notification,name="send_notification"),
+    path("clear_notifications/<int:user_id>",views.clear_notifications,name="clear_notifications"),
 ]

@@ -88,9 +88,16 @@ def borrow_book(request, id):
         })
     
     try:
+        user = db.get_user_by_username(username)
+        if not user:
+            return render(request, "Library/borrow_book.html", {
+                "book": book,
+                "error": "User not found"
+            })
+        
         db.add_borrowing({
             "book_id": id,
-            "user_id": username,
+            "user_id": user["id"],
             "borrowed_for": int(borrowed_for)
         })
         return redirect("index")
@@ -109,7 +116,7 @@ def waiting_approval(request):
         requests = []
         for req in waiting_requests:
             book = db.get_book_by_id(req["book_id"])
-            user = db.get_user(req["user_id"])
+            user = db.get_user_by_id(req["user_id"])
             requests.append({
                 "request": req,
                 "book": book,

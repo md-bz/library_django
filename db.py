@@ -60,7 +60,7 @@ def search_available_books(query: str) -> List[Dict[str, Any]]:
 
 # -----------------------------
 # Users CRUD (stored in users.json)
-# Schema: {"username": str, "password": str, "role": "admin"|"user", "notifications": List[str]}
+# Schema: {"id": int, "username": str, "password": str, "role": "admin"|"user", "notifications": List[str]}
 # -----------------------------
 
 def read_users_from_file() -> List[Dict[str, Any]]:
@@ -75,7 +75,12 @@ def write_users_to_file(users: List[Dict[str, Any]]) -> None:
         json.dump(users, file, indent=4)
 
 
-def get_user(username: str) -> Optional[Dict[str, Any]]:
+def get_user_by_id(user_id: int) -> Optional[Dict[str, Any]]:
+    users = read_users_from_file()
+    return next((user for user in users if user.get("id") == user_id), None)
+
+
+def get_user_by_username(username: str) -> Optional[Dict[str, Any]]:
     users = read_users_from_file()
     return next((user for user in users if user.get("username") == username), None)
 
@@ -98,7 +103,11 @@ def add_user(user: Dict[str, Any]) -> None:
     if user["role"] not in ("admin", "user"):
         raise ValueError("Invalid role; must be 'admin' or 'user'")
 
+    # Assign next available ID
+    new_id = max([u["id"] for u in users], default=0) + 1
+
     users.append({
+        "id": new_id,
         "username": user["username"],
         "password": user["password"],
         "role": user["role"],
@@ -112,7 +121,7 @@ def update_user(user: Dict[str, Any]) -> None:
 
     updated = False
     for idx, existing in enumerate(users):
-        if existing.get("username") == user.get("username"):
+        if existing.get("id") == user.get("id"):
             merged = {**existing, **user}
             if merged.get("role") not in ("admin", "user"):
                 raise ValueError("Invalid role; must be 'admin' or 'user'")
@@ -126,22 +135,22 @@ def update_user(user: Dict[str, Any]) -> None:
     write_users_to_file(users)
 
 
-def remove_user(username: str) -> None:
+def remove_user(user_id: int) -> None:
     users = read_users_from_file()
-    new_users = [u for u in users if u.get("username") != username]
+    new_users = [u for u in users if u.get("id") != user_id]
     if len(new_users) == len(users):
         raise ValueError("User not found")
     write_users_to_file(new_users)
 
-def add_notification(username: str, notification: str) -> None:
-    user = get_user(username)
+def add_notification(user_id: int, notification: str) -> None:
+    user = get_user_by_id(user_id)
     if not user:
         raise ValueError("User not found")
     user["notifications"].append(notification)
     update_user(user)
 
-def clear_user_notifications(username: str) -> None:
-    user = get_user(username)
+def clear_user_notifications(user_id: int) -> None:
+    user = get_user_by_id(user_id)
     if not user:
         raise ValueError("User not found")
     user["notifications"] = []
@@ -150,7 +159,7 @@ def clear_user_notifications(username: str) -> None:
 
 # -----------------------------
 # Borrowings CRUD (stored in borrowings.json)
-# Schema: {"id": int, "book_id": int, "user_id": str, "borrowed_for": str, "borrowed_till": int|null, "approved": bool|null, "returned_at": int|null}
+# Schema: {"id": int, "book_id": int, "user_id": int, "borrowed_for": str, "borrowed_till": int|null, "approved": bool|null, "returned_at": int|null}
 # -----------------------------
 
 def read_borrowings_from_file() -> List[Dict[str, Any]]:
@@ -173,9 +182,9 @@ def get_borrowing_by_id(borrowing_id: int) -> Optional[Dict[str, Any]]:
     borrowings = read_borrowings_from_file()
     return next((borrowing for borrowing in borrowings if borrowing["id"] == borrowing_id), None)
 
-def get_user_borrowings(username: str) -> List[Dict[str, Any]]:
+def get_user_borrowings(user_id: int) -> List[Dict[str, Any]]:
     borrowings = read_borrowings_from_file()
-    return [borrowing for borrowing in borrowings if borrowing["user_id"] == username]
+    return [borrowing for borrowing in borrowings if borrowing["user_id"] == user_id]
 
 
 def get_book_borrowings(book_id: int) -> List[Dict[str, Any]]:
@@ -215,7 +224,7 @@ def add_borrowing(borrowing: Dict[str, Any]) -> None:
     if not book:
         raise ValueError("Book not found")
     
-    user = get_user(borrowing["user_id"])
+    user = get_user_by_id(borrowing["user_id"])
     if not user:
         raise ValueError("User not found")
     
