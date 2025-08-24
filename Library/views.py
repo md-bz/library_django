@@ -5,11 +5,24 @@ from helpers import slugify
 
 def index(request):
     search_query = request.GET.get("search")
+    available_only = request.GET.get("available_only") == "true"
+    
     if search_query:
-        books = db.search_books(search_query)
+        if available_only:
+            books = db.search_available_books(search_query)
+        else:
+            books = db.search_books(search_query)
     else:
-        books = db.get_books()
-    return render(request, "Library/index.html",{"books":books})
+        if available_only:
+            books = db.get_available_books()
+        else:
+            books = db.get_books()
+    
+    return render(request, "Library/index.html", {
+        "books": books,
+        "search_query": search_query,
+        "available_only": available_only
+    })
 
 def book(request,slug):
     book = db.get_book(slug)

@@ -5,15 +5,27 @@
 
 {% block content %}
 <form action="" method="GET">
-    <input type="text" name="search" required placeholder="search books">
-    <button type="submit">search</button>
+    <input type="text" name="search" placeholder="search books" value="{{ search_query|default:'' }}">
+    <label>
+        <input type="checkbox" name="available_only" value="true" {% if available_only %}checked{% endif %}>
+        Show only available books
+    </label>
+    <button type="submit">Search</button>
 </form>
+
+{% if search_query %}
+    <p>Search results for "{{ search_query }}"{% if available_only %} (available books only){% endif %}:</p>
+{% elif available_only %}
+    <p>Showing only available books:</p>
+{% endif %}
 
 <ul>
     {% for book in books %}
     <li>
         <a href="{% url 'book' book.slug %}">{{ book.title }}</a>
     </li>
+    {% empty %}
+    <li>No books found.</li>
     {% endfor %}    
 </ul>
 {% endblock %}

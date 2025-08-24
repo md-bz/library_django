@@ -53,6 +53,11 @@ def search_books(query: str) -> List[Dict[str, Any]]:
     books = read_books_from_file()
     return [book for book in books if query.lower() in book["title"].lower()]
 
+
+def search_available_books(query: str) -> List[Dict[str, Any]]:
+    available_books = get_available_books()
+    return [book for book in available_books if query.lower() in book["title"].lower()]
+
 # -----------------------------
 # Users CRUD (stored in users.json)
 # Schema: {"username": str, "password": str, "role": "admin"|"user", "notifications": List[str]}
