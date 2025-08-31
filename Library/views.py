@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from Users.decorators import require_admin, require_auth
 import db
+from django.views.decorators.http import require_http_methods, require_GET
 from helpers import slugify
 from datetime import datetime
 
+@require_GET
 def index(request):
     search_query = request.GET.get("search")
     available_only = request.GET.get("available_only") == "true"
@@ -25,6 +27,7 @@ def index(request):
         "available_only": available_only
     })
 
+@require_GET
 def book(request,slug):
     book = db.get_book(slug)
 
@@ -33,17 +36,21 @@ def book(request,slug):
     else:
         return render(request, "Library/404.html")
 
+@require_GET
 def book_by_id(request,id):
     book = db.get_book_by_id(id)
     if book:
         return render(request, "Library/book.html",{"book":book})
     else:
         return render(request, "Library/404.html")  
-    
+
+@require_GET
+
 def not_found(request,path):
     return redirect("not_found")
 
 @require_admin
+@require_http_methods(["GET","POST"])
 def add_book(request):
     if request.method == "POST":
         book = request.POST.copy()
@@ -56,6 +63,7 @@ def add_book(request):
         return render(request, "Library/add_book.html")
 
 @require_admin
+@require_http_methods(["GET","POST"])
 def update_book(request,id):
     if request.method == "POST":
         book = request.POST.copy()
@@ -73,6 +81,7 @@ def remove_book(request,id):
 
 
 @require_auth
+@require_http_methods(["GET","POST"])
 def borrow_book(request, id):
 
     book = db.get_book_by_id(id)
@@ -110,6 +119,7 @@ def borrow_book(request, id):
 
 
 @require_admin
+@require_http_methods(["GET","POST"])
 def waiting_approval(request):
     if request.method == "GET":
         waiting_requests = db.get_waiting_for_approve()
@@ -142,6 +152,7 @@ def waiting_approval(request):
         return redirect("waiting_approval")
 
 @require_admin
+@require_GET
 def active_borrowings(request):
     borrowings = db.get_active_borrowings()
     for borrowing in borrowings:
@@ -153,6 +164,7 @@ def active_borrowings(request):
     return render(request, "Library/active_borrowings.html",{"borrowings":borrowings})  
 
 @require_admin
+@require_http_methods(["GET","POST"])
 def return_book(request,id):
     borrowing = db.get_borrowing_by_id(id)
     book  = db.get_book_by_id(borrowing["book_id"])
